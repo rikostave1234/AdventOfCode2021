@@ -3,7 +3,6 @@ package advent.of.code.one
 import advent.of.code.util.getInputFromResources
 
 class SonarSweep {
-
     var input: List<Int> = getInputFromResources("one/input")
         .map { it.toInt() }
 
@@ -50,11 +49,11 @@ class SonarSweep {
     }
 }
 
-fun List<Int>.hasNextWindow(index: Int) =
+private fun List<Int>.hasNextWindow(index: Int) =
     index < this.size - 3
 
-fun List<Int>.currentWindow(index: Int) =
+private fun List<Int>.currentWindow(index: Int) =
     (this[index] + this[index + 1] + this[index + 2])
 
-fun List<Int>.nextWindow(index: Int) =
+private fun List<Int>.nextWindow(index: Int) =
     (this[index + 1] + this[index + 2] + this[index + 3])

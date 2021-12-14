@@ -1,6 +1,7 @@
 package advent.of.code
 
 import advent.of.code.one.SonarSweep
+import advent.of.code.two.Navigation
 
 fun main(args: Array<String>) {
     println("Welcome to AdventOfCode!")
@@ -10,4 +11,8 @@ fun main(args: Array<String>) {
     SonarSweep().part2()
     SonarSweep().part1Fancy()
     SonarSweep().part2Fancy()
+
+    println("Day two:")
+    Navigation().part1()
+    Navigation().part2()
 }
