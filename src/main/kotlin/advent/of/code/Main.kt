@@ -1,6 +1,7 @@
 package advent.of.code
 
 import advent.of.code.one.SonarSweep
+import advent.of.code.three.BinaryDiagnostic
 import advent.of.code.two.Navigation
 
 fun main(args: Array<String>) {
@@ -15,4 +16,7 @@ fun main(args: Array<String>) {
     println("Day two:")
     Navigation().part1()
     Navigation().part2()
+
+    println("Day three:")
+    BinaryDiagnostic().part1()
 }

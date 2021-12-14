@@ -65,19 +65,19 @@ class Navigation {
     }
 }
 
-data class Position(val horizontal: Int, val depth: Int, val aim: Int = 0)
+private data class Position(val horizontal: Int, val depth: Int, val aim: Int = 0)
 
-data class Step(val direction: Direction, val amount: Int)
+private data class Step(val direction: Direction, val amount: Int)
 
-enum class Direction {
+private enum class Direction {
     FORWARD,
     UP,
     DOWN;
 }
 
-fun List<String>.toStep() =
+private fun List<String>.toStep() =
     Step(this[0].toDirection(), this[1].toInt())
 
-fun String.toDirection(): Direction =
+private fun String.toDirection(): Direction =
     Direction.values().find {
         it.name.lowercase() == this } ?: error("Could not parse direction!")
