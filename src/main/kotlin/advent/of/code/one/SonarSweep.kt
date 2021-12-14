@@ -1,9 +1,5 @@
 package advent.of.code.one
 
-import advent.of.code.one.DepthMeasurement.DECREASED
-import advent.of.code.one.DepthMeasurement.INCREASED
-import advent.of.code.one.DepthMeasurement.NA
-import advent.of.code.one.DepthMeasurement.NO_CHANGE
 import advent.of.code.util.getInputFromResources
 
 class SonarSweep {
@@ -15,30 +11,45 @@ class SonarSweep {
         println("Part 1:")
 
         val increasedMeasurementCount = input
-            .mapIndexed { i, it ->
-                when {
-                    i == 0 -> NA
-                    it > input[i - 1] -> INCREASED
-                    else -> DECREASED
-                }
+            .filterIndexed { i, it ->
+                i > 0 && it > input[i - 1]
             }
-            .filter { it == INCREASED }
+            .size
+        println("An increase of depth has been measured $increasedMeasurementCount times.")
+    }
+
+    fun part1Fancy() {
+        println("Part 1:")
+
+        val increasedMeasurementCount = input
+            .windowed(2)
+            .filter {
+                it[0] < it[1]
+            }
             .size
         println("An increase of depth has been measured $increasedMeasurementCount times.")
     }
 
     fun part2() {
         println("Part 2:")
-        val increasedMeasurementCount = List(input.size) { i ->
-            when {
-                !input.hasNextWindow(i) -> NA
-                input.currentWindow(i) < input.nextWindow(i) -> INCREASED
-                input.currentWindow(i) == input.nextWindow(i) -> NO_CHANGE
-                else -> DECREASED
-            }
-        }
-            .filter { it == INCREASED }
-            .size
+        val increasedMeasurementCount =
+            input.filterIndexed() { i, _ ->
+                input.hasNextWindow(i) && input.currentWindow(i) < input.nextWindow(i)
+
+            }.size
+        println("An increase of depth has been measured $increasedMeasurementCount times.")
+    }
+
+    fun part2Fancy() {
+        println("Part 2:")
+        val increasedMeasurementCount =
+            input
+                .windowed(3)
+                .windowed(2)
+                .filter {
+                    it[0].sum() < it[1].sum()
+                }
+                .size
         println("An increase of depth has been measured $increasedMeasurementCount times.")
     }
 }
@@ -51,10 +62,3 @@ fun List<Int>.currentWindow(index: Int) =
 
 fun List<Int>.nextWindow(index: Int) =
     (this[index + 1] + this[index + 2] + this[index + 3])
-
-enum class DepthMeasurement {
-    INCREASED,
-    DECREASED,
-    NO_CHANGE,
-    NA;
-}

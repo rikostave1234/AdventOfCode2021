@@ -8,4 +8,6 @@ fun main(args: Array<String>) {
     println("Day one:")
     SonarSweep().part1()
     SonarSweep().part2()
+    SonarSweep().part1Fancy()
+    SonarSweep().part2Fancy()
 }
