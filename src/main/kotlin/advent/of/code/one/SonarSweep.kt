@@ -13,8 +13,7 @@ class SonarSweep {
         val increasedMeasurementCount = input
             .filterIndexed { i, it ->
                 i > 0 && it > input[i - 1]
-            }
-            .size
+            }.size
         println("An increase of depth has been measured $increasedMeasurementCount times.")
     }
 
@@ -25,17 +24,15 @@ class SonarSweep {
             .windowed(2)
             .filter {
                 it[0] < it[1]
-            }
-            .size
+            }.size
         println("An increase of depth has been measured $increasedMeasurementCount times.")
     }
 
     fun part2() {
         println("Part 2:")
         val increasedMeasurementCount =
-            input.filterIndexed() { i, _ ->
+            input.filterIndexed { i, _ ->
                 input.hasNextWindow(i) && input.currentWindow(i) < input.nextWindow(i)
-
             }.size
         println("An increase of depth has been measured $increasedMeasurementCount times.")
     }
@@ -48,8 +45,7 @@ class SonarSweep {
                 .windowed(2)
                 .filter {
                     it[0].sum() < it[1].sum()
-                }
-                .size
+                }.size
         println("An increase of depth has been measured $increasedMeasurementCount times.")
     }
 }
