@@ -14,24 +14,24 @@ class Bingo {
     fun part1(boards: List<Board> = this.boards, index: Int = 0) {
         val updatedBoards = boards.map { it.apply(numbers[index]) }
         updatedBoards.find { it.isWinner() }?.let {
-            val score = it.score() * numbers[index]
+            val score = it.score(numbers[index])
             println("Bingo!!! First winning board's score is $score")
         } ?: run {
             part1(updatedBoards, index + 1)
         }
     }
 
-    fun part2(boards: List<Board> = this.boards, knownWinners: List<Pair<Int, Int>> = emptyList(), index: Int = 0) {
-        if (index == numbers.size || boards.size == knownWinners.size) {
-            println("Bingo!!! Last winning board's score is ${knownWinners.last().second}")
+    fun part2(boards: List<Board> = this.boards, lastWinnerScore: Int = 0, index: Int = 0) {
+        if (index == numbers.size || boards.isEmpty()) {
+            println("Bingo!!! Last winning board's score is $lastWinnerScore")
         } else {
             val updatedBoards = boards.map { it.apply(numbers[index]) }
-            val updatedKnownWinners = knownWinners + updatedBoards.mapIndexedNotNull { i, it ->
-                if (!knownWinners.map { it.first }.contains(i) && it.isWinner())
-                    i to it.score() * numbers[index]
-                else null
-            }
-            part2(updatedBoards, updatedKnownWinners, index + 1)
+            val winners = updatedBoards.filter { it.isWinner() }
+            part2(
+                updatedBoards - winners.toSet(),
+                winners.lastOrNull()?.score(numbers[index]) ?: lastWinnerScore,
+                index + 1
+            )
         }
     }
 }
@@ -46,7 +46,7 @@ class Board(private val rows: List<List<Field>>) {
         return bingoInRows || bingoInColumns
     }
 
-    fun score() = rows.flatten().filter { !it.marked }.sumOf { it.value }
+    fun score(factor: Int) = rows.flatten().filter { !it.marked }.sumOf { it.value } * factor
     fun apply(number: Int) = Board(
         rows.map { it.map { field -> if (field.value == number) field.copy(marked = true) else field } }
     )
