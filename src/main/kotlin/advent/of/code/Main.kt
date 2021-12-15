@@ -19,4 +19,5 @@ fun main(args: Array<String>) {
 
     println("Day three:")
     BinaryDiagnostic().part1()
+    BinaryDiagnostic().part2()
 }
