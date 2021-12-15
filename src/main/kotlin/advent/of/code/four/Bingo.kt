@@ -38,13 +38,14 @@ class Bingo {
 
 data class Field(val value: Int, val marked: Boolean = false)
 
-data class Board(val rows: List<List<Field>>) {
+class Board(private val rows: List<List<Field>>) {
     private fun columns() = List(5) { i -> rows.map { it[i] } }
     fun isWinner(): Boolean {
         val bingoInRows = rows.any { it.all { field -> field.marked } }
         val bingoInColumns = columns().any { it.all { field -> field.marked } }
         return bingoInRows || bingoInColumns
     }
+
     fun score() = rows.flatten().filter { !it.marked }.sumOf { it.value }
     fun apply(number: Int) = Board(
         rows.map { it.map { field -> if (field.value == number) field.copy(marked = true) else field } }
