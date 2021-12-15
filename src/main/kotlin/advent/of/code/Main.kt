@@ -1,5 +1,6 @@
 package advent.of.code
 
+import advent.of.code.four.Bingo
 import advent.of.code.one.SonarSweep
 import advent.of.code.three.BinaryDiagnostic
 import advent.of.code.two.Navigation
@@ -20,4 +21,8 @@ fun main(args: Array<String>) {
     println("Day three:")
     BinaryDiagnostic().part1()
     BinaryDiagnostic().part2()
+
+    println("Day four:")
+    Bingo().part1()
+    Bingo().part2()
 }
