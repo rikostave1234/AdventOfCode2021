@@ -1,5 +1,6 @@
 package advent.of.code
 
+import advent.of.code.five.HydrothermalVenture
 import advent.of.code.four.Bingo
 import advent.of.code.one.SonarSweep
 import advent.of.code.three.BinaryDiagnostic
@@ -25,4 +26,8 @@ fun main(args: Array<String>) {
     println("Day four:")
     Bingo().part1()
     Bingo().part2()
+
+    println("Day five:")
+    HydrothermalVenture().part1()
+    HydrothermalVenture().part2()
 }
