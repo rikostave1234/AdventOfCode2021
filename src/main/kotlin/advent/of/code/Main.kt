@@ -3,6 +3,7 @@ package advent.of.code
 import advent.of.code.five.HydrothermalVenture
 import advent.of.code.four.Bingo
 import advent.of.code.one.SonarSweep
+import advent.of.code.six.Lanternfish
 import advent.of.code.three.BinaryDiagnostic
 import advent.of.code.two.Navigation
 
@@ -30,4 +31,8 @@ fun main(args: Array<String>) {
     println("Day five:")
     HydrothermalVenture().part1()
     HydrothermalVenture().part2()
+
+    println("Day 6:")
+    Lanternfish().part1()
+    Lanternfish().part2()
 }
